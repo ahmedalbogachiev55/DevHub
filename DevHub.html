@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DevHub — портал для разработчиков</title>
+<meta name="description" content="Каталог GitHub-репозиториев, языки программирования, онлайн-утилиты и легальные источники ПО.">
+<style>
+:root{--bg:#0a0e14;--panel:#111822;--line:#1f2a38;--tx:#e6edf5;--mut:#8696a8;--ac:#00D4FF;--acx:#00131a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f6f9fc;--panel:#fff;--line:#dbe4ee;--tx:#0d1a26;--mut:#56677a;--ac:#007c99;--acx:#fff}}
+:root[data-theme="light"]{--bg:#f6f9fc;--panel:#fff;--line:#dbe4ee;--tx:#0d1a26;--mut:#56677a;--ac:#007c99;--acx:#fff}
+:root[data-theme="dark"]{--bg:#0a0e14;--panel:#111822;--line:#1f2a38;--tx:#e6edf5;--mut:#8696a8;--ac:#00D4FF;--acx:#00131a}
+html{scroll-padding-top:70px}*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+.m,code,input.m,textarea{font-family:"JetBrains Mono","Fira Code",ui-monospace,Consolas,monospace}
+a{color:var(--ac)}button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{max-width:1100px;margin:auto;padding:10px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.logo{font-weight:700;font-size:18px;letter-spacing:-.02em;text-decoration:none;color:var(--tx)}.logo b{color:var(--ac)}
+nav{display:flex;gap:2px;flex-wrap:wrap}nav a{padding:6px 10px;border-radius:6px;color:var(--mut);text-decoration:none;font-size:14px}
+nav a.on,nav a:hover{color:var(--tx);background:var(--panel)}
+.sp{flex:1}
+.btn{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:6px 10px;cursor:pointer;font-size:13px}
+.btn:hover{border-color:var(--ac)}.btn.p{background:var(--ac);color:var(--acx);border-color:var(--ac);font-weight:600}
+main{max-width:1100px;margin:auto;padding:28px 16px 80px}
+h1{font-size:clamp(30px,6vw,52px);line-height:1.05;letter-spacing:-.03em;margin:.2em 0 .3em;max-width:16em}
+h2{font-size:22px;margin:0 0 14px;letter-spacing:-.01em}.lead{color:var(--mut);max-width:42em}
+.hero-s{display:flex;gap:10px;margin:22px 0;max-width:620px}
+.hero-s input{flex:1}
+input,select,textarea{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:9px 11px;min-width:0}
+textarea{width:100%;min-height:80px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.card h3{margin:0;font-size:15px;word-break:break-word}.card p{margin:0;color:var(--mut);font-size:13px}
+.meta{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--mut)}
+.tag{font-size:11px;border:1px solid var(--line);border-radius:99px;padding:1px 8px;color:var(--mut)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.chips button{border-radius:99px}.chips .on{background:var(--ac);color:var(--acx);border-color:var(--ac)}
+.fav{margin-left:auto;background:none;border:0;cursor:pointer;font-size:18px;color:var(--mut)}.fav.on{color:var(--ac)}
+.sk{height:118px;border-radius:8px;background:linear-gradient(90deg,var(--panel),var(--line),var(--panel));background-size:200% 100%;animation:sk 1.2s infinite}
+@keyframes sk{to{background-position:-200% 0}}
+@media(prefers-reduced-motion:reduce){.sk{animation:none}}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.tools label{font-size:12px;color:var(--mut);display:block;margin:8px 0 3px}
+.tools input,.tools select{width:100%}
+.out{margin-top:8px;padding:8px;border:1px dashed var(--line);border-radius:6px;min-height:36px;word-break:break-all;font-size:13px}
+.sw{height:34px;border-radius:6px;border:1px solid var(--line);margin-top:8px}
+table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden;font-size:14px}
+td,th{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.warn{border:1px solid var(--ac);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:14px}
+.wrap{overflow-x:auto}
+.sec{display:none}.sec.on{display:block}
+dialog{background:var(--panel);color:var(--tx);border:1px solid var(--line);border-radius:10px;width:min(560px,92vw);padding:14px;top:12vh}
+dialog::backdrop{background:#0008}
+dialog input{width:100%}.res a{display:block;padding:7px 8px;border-radius:6px;color:var(--tx);text-decoration:none}.res a:hover,.res a:focus{background:var(--bg)}
+kbd{border:1px solid var(--line);border-radius:4px;padding:0 5px;font-size:12px}
+footer{border-top:1px solid var(--line);padding:18px 16px;text-align:center;color:var(--mut);font-size:13px}
+</style></head><body>
+<header><div class="bar">
+<a class="logo" href="#/">Dev<b>Hub</b></a>
+<nav id="nav"><a href="#/" data-i="n_home"></a><a href="#/github" data-i="n_gh"></a><a href="#/languages" data-i="n_lang"></a><a href="#/tools" data-i="n_tools"></a><a href="#/software" data-i="n_sw"></a><a href="#/about" data-i="n_about"></a></nav>
+<span class="sp"></span>
+<button class="btn" id="sbtn" aria-label="Search"><span data-i="search"></span> <kbd>Ctrl K</kbd></button>
+<button class="btn" id="lang">EN</button><button class="btn" id="theme" aria-label="Theme">◐</button>
+</div></header>
+<main>
+<section class="sec" id="s-home">
+<h1 data-i="h1"></h1><p class="lead" data-i="lead"></p>
+<div class="hero-s"><input id="hq" data-ph="ph" aria-label="search"><button class="btn p" id="hgo" data-i="find"></button></div>
+<h2 data-i="top"></h2><div class="grid" id="homeTop"></div>
+<h2 style="margin-top:28px" data-i="n_tools"></h2><div class="grid" id="homeTools"></div>
+</section>
+<section class="sec" id="s-github">
+<h2 data-i="n_gh"></h2><p class="lead" data-i="ghnote"></p>
+<div class="row"><input id="q" data-ph="ph" aria-label="search" style="flex:1;min-width:180px">
+<select id="fl" aria-label="lang"></select><select id="fs" aria-label="stars"><option value="0">★ any</option><option value="50000">★ 50k+</option><option value="100000">★ 100k+</option></select>
+<select id="so" aria-label="sort"><option value="stars">★</option><option value="date">date</option><option value="name">A–Z</option></select></div>
+<div class="row chips" id="cats"></div>
+<div class="grid" id="repos"></div>
+</section>
+<section class="sec" id="s-languages"><h2 data-i="n_lang"></h2><div class="grid" id="langs"></div></section>
+<section class="sec" id="s-tools"><h2 data-i="n_tools"></h2><div class="tools" id="toolbox"></div>
+<p class="lead" style="margin-top:16px" data-i="bgnote"></p></section>
+<section class="sec" id="s-software"><h2 data-i="n_sw"></h2><div class="warn" data-i="legal"></div>
+<div class="wrap"><table><thead><tr><th>ПО / Software</th><th data-i="src"></th><th data-i="act"></th></tr></thead><tbody id="sw"></tbody></table></div></section>
+<section class="sec" id="s-about"><h2 data-i="n_about"></h2><p class="lead" data-i="about"></p></section>
+</main>
+<footer>DevHub · WCAG 2.1 AA · RU / EN</footer>
+<dialog id="dlg"><input id="gq" class="m" data-ph="ph" aria-label="search"><div class="res" id="gres"></div></dialog>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const T={ru:{n_home:"Главная",n_gh:"GitHub",n_lang:"Языки",n_tools:"Утилиты",n_sw:"Загрузка ПО",n_about:"О проекте",search:"Поиск",h1:"Всё для разработчика в одном месте",lead:"Репозитории GitHub, документация языков, онлайн-утилиты и официальные источники ПО.",ph:"Поиск репозиториев, языков, утилит…",find:"Найти",top:"Топ репозиториев",ghnote:"Демо-набор из 16 записей. В production каталог из 5000+ репозиториев (★ ≥ 1000, активность за 12 мес.) обновляется раз в 24 часа через GitHub API.",all:"Все",fav:"Избранное",new:"Новое",beg:"Для новичков",stars:"звёзд",none:"Ничего не найдено. Измените запрос или фильтры.",bgnote:"Удаление фона (ONNX Runtime Web / remove.bg) требует загрузки модели и ключа API, поэтому в этой версии не включено.",legal:"Только официальные и легальные источники. Для использования ПО нужна лицензия и активация.",src:"Официальный источник",act:"Установка / активация",open:"Открыть",about:"DevHub — рабочее название портала для программистов, студентов IT и DevOps-инженеров. Каталог репозиториев, хаб языков, конвертеры и легальные загрузки ПО.",calc:"Результат",copy:"Копировать"},
+en:{n_home:"Home",n_gh:"GitHub",n_lang:"Languages",n_tools:"Tools",n_sw:"Software",n_about:"About",search:"Search",h1:"Everything a developer needs in one place",lead:"GitHub repositories, language docs, online utilities and official software sources.",ph:"Search repos, languages, tools…",find:"Search",top:"Top repositories",ghnote:"Demo set of 16 entries. In production the 5000+ repo catalog (★ ≥ 1000, active in 12 months) refreshes every 24h via the GitHub API.",all:"All",fav:"Favorites",new:"New",beg:"Beginners",stars:"stars",none:"Nothing found. Change the query or filters.",bgnote:"Background removal (ONNX Runtime Web / remove.bg) needs a model download and an API key, so it is not included in this version.",legal:"Official, legal sources only. A license and activation are required to use the software.",src:"Official source",act:"Install / activation",open:"Open",about:"DevHub is a working title for a portal for programmers, IT students and DevOps engineers: a repo catalog, a language hub, converters and legal software downloads.",calc:"Result",copy:"Copy"}};
+let L=localStorage.getItem("l")||"ru";const t=k=>T[L][k]||k;
+const R=[["freeCodeCamp/freeCodeCamp","JavaScript",400,"2025-01",["learn","education"],1,"Бесплатное обучение программированию / Free coding curriculum"],["codecrafters-io/build-your-own-x","Markdown",450,"2025-01",["learn","tutorial"],1,"Воссоздайте любую технологию с нуля / Rebuild technologies from scratch"],["public-apis/public-apis","Python",340,"2025-02",["api","tools"],1,"Список бесплатных API / Free APIs list"],["torvalds/linux","C",200,"2025-03",["os","kernel"],0,"Ядро Linux / Linux kernel"],["facebook/react","JavaScript",240,"2025-03",["web","ui"],0,"Библиотека для UI / UI library"],["vuejs/core","TypeScript",208,"2025-03",["web","ui"],0,"Прогрессивный фреймворк / Progressive framework"],["microsoft/vscode","TypeScript",170,"2025-03",["editor","tools"],0,"Редактор кода / Code editor"],["tensorflow/tensorflow","C++",188,"2025-02",["ai","ml"],0,"ML-платформа / ML platform"],["pytorch/pytorch","Python",90,"2025-03",["ai","ml"],0,"Тензоры и нейросети / Tensors and neural nets"],["kubernetes/kubernetes","Go",112,"2025-03",["devops","containers"],0,"Оркестрация контейнеров / Container orchestration"],["golang/go","Go",125,"2025-03",["language"],0,"Язык Go / The Go language"],["rust-lang/rust","Rust",100,"2025-03",["language"],0,"Язык Rust / The Rust language"],["django/django","Python",83,"2025-03",["web","backend"],1,"Web-фреймворк / Web framework"],["flutter/flutter","Dart",168,"2025-03",["mobile","ui"],0,"Кросс-платформенный UI / Cross-platform UI"],["postgres/postgres","C",17,"2025-03",["database"],0,"СУБД PostgreSQL / PostgreSQL database"],["denoland/deno","Rust",100,"2025-03",["runtime","tools"],0,"Среда выполнения JS/TS / JS/TS runtime"]];
+const repos=R.map(([n,l,s,d,tg,b,ds])=>({n,l,s:s*1000,d,tg,b,ds}));
+const LG=[["Python","python.org","docs.python.org","pypi.org"],["Java","oracle.com/java","docs.oracle.com/en/java","search.maven.org"],["JavaScript / Node.js","nodejs.org","developer.mozilla.org","npmjs.com"],["TypeScript","typescriptlang.org","typescriptlang.org/docs","npmjs.com"],["C / C++","isocpp.org","cppreference.com","—"],["C# / .NET","dotnet.microsoft.com","learn.microsoft.com/dotnet","nuget.org"],["Go","go.dev","go.dev/doc","pkg.go.dev"],["Rust","rust-lang.org","doc.rust-lang.org","crates.io"],["PHP","php.net","php.net/docs.php","packagist.org"],["Ruby","ruby-lang.org","ruby-lang.org/en/documentation","rubygems.org"],["Kotlin","kotlinlang.org","kotlinlang.org/docs","search.maven.org"],["Swift","swift.org","swift.org/documentation","swiftpackageindex.com"],["Dart / Flutter","dart.dev","flutter.dev","pub.dev"],["SQL","postgresql.org","postgresql.org/docs","sqlite.org/docs.html"]];
+const SW=[["Windows 10","microsoft.com/software-download/windows10","Media Creation Tool; лицензия / license key"],["Windows 11","microsoft.com/software-download/windows11","Installation Assistant / ISO"],["Windows Server","microsoft.com/evalcenter","Evaluation Center (trial)"],["Microsoft Office","microsoft.com/microsoft-365/try","Office Deployment Tool (trial)"],["Visual Studio","visualstudio.microsoft.com","Community edition free"],["SQL Server","microsoft.com/sql-server/sql-server-downloads","Developer / Evaluation"]];
+let cat="all",favs=JSON.parse(localStorage.getItem("fav")||"[]");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function card(r){const f=favs.includes(r.n);return`<article class="card"><div style="display:flex;gap:6px"><h3><a href="https://github.com/${r.n}" target="_blank" rel="noopener">${esc(r.n)}</a></h3><button class="fav ${f?"on":""}" data-f="${r.n}" aria-label="${t("fav")}" aria-pressed="${f}">${f?"★":"☆"}</button></div><p>${esc(r.ds)}</p><div class="meta"><span>● ${r.l}</span><span>★ ${(r.s/1000).toFixed(0)}k</span><span>${r.d}</span></div><div>${r.tg.map(x=>`<span class="tag">${x}</span>`).join(" ")}</div></article>`}
+function renderRepos(){const q=$("#q").value.toLowerCase(),l=$("#fl").value,s=+$("#fs").value,so=$("#so").value;
+let a=repos.filter(r=>(!q||(r.n+r.ds+r.tg).toLowerCase().includes(q))&&(!l||r.l==l)&&r.s>=s&&(cat=="all"||(cat=="fav"&&favs.includes(r.n))||(cat=="top"&&r.s>=150000)||(cat=="new"&&r.d>="2025-03")||(cat=="beg"&&r.b)));
+a.sort((x,y)=>so=="stars"?y.s-x.s:so=="date"?y.d.localeCompare(x.d):x.n.localeCompare(y.n));
+$("#repos").innerHTML=a.length?a.map(card).join(""):`<p class="lead">${t("none")}</p>`}
+function cats(){$("#cats").innerHTML=[["all",t("all")],["top","Top"],["new",t("new")],["beg",t("beg")],["fav","★ "+t("fav")]].map(([k,v])=>`<button class="btn ${cat==k?"on":""}" data-c="${k}">${v}</button>`).join("")}
+document.addEventListener("click",e=>{const f=e.target.closest("[data-f]");if(f){const n=f.dataset.f;favs=favs.includes(n)?favs.filter(x=>x!=n):[...favs,n];try{localStorage.setItem("fav",JSON.stringify(favs))}catch{}renderRepos();$("#homeTop").innerHTML=repos.slice(0,6).map(card).join("")}
+const c=e.target.closest("[data-c]");if(c){cat=c.dataset.c;cats();renderRepos()}});
+["q","fl","fs","so"].forEach(i=>$("#"+i).addEventListener("input",renderRepos));
+function langs(){$("#fl").innerHTML=`<option value="">${t("all")}</option>`+[...new Set(repos.map(r=>r.l))].sort().map(x=>`<option>${x}</option>`).join("");
+$("#langs").innerHTML=LG.map(([n,s,d,p])=>{const top=repos.filter(r=>r.l==n.split(" ")[0]).length;return`<article class="card"><h3>${n}</h3><p><a href="https://${s}" target="_blank" rel="noopener">${s}</a><br>Docs: <a href="https://${d}" target="_blank" rel="noopener">${d}</a><br>Pkg: ${p=="—"?p:`<a href="https://${p}" target="_blank" rel="noopener">${p}</a>`}</p><div class="meta">${top} repos</div></article>`}).join("");
+$("#sw").innerHTML=SW.map(([n,u,a])=>`<tr><td>${n}</td><td><a href="https://${u}" target="_blank" rel="noopener">${u}</a></td><td>${a}</td></tr>`).join("")}
+/* Tools */
+const tl=[
+["Base64 / URL",`<label>Text</label><textarea id="b_i" class="m"></textarea><div class="row" style="margin-top:8px"><button class="btn" data-a="b64e">Base64 ↑</button><button class="btn" data-a="b64d">Base64 ↓</button><button class="btn" data-a="ue">URL ↑</button><button class="btn" data-a="ud">URL ↓</button><button class="btn" data-a="jwt">JWT</button></div><div class="out m" id="b_o"></div>`],
+["Bin / Oct / Dec / Hex",`<label>Dec</label><input id="n_d" class="m" inputmode="numeric"><label>Bin</label><input id="n_b" class="m"><label>Oct</label><input id="n_o" class="m"><label>Hex</label><input id="n_h" class="m">`],
+["HEX ↔ RGB ↔ HSL",`<label>Color</label><input type="color" id="c_p" value="#00d4ff" style="height:40px;padding:2px"><div class="out m" id="c_o"></div><div class="sw" id="c_s"></div>`],
+["SHA-1 / SHA-256",`<label>Text</label><textarea id="h_i" class="m"></textarea><div class="out m" id="h_o"></div>`],
+["Units",`<div class="row"><input id="u_v" type="number" value="1" style="width:90px"><select id="u_f"></select><span>→</span><select id="u_t"></select></div><div class="out m" id="u_o"></div>`],
+["JSON → YAML",`<label>JSON</label><textarea id="j_i" class="m">{"name":"DevHub","tags":["web","tools"]}</textarea><div class="out m" id="j_o" style="white-space:pre"></div>`],
+["Time zones",`<label>Local</label><input type="datetime-local" id="z_i"><div class="out m" id="z_o" style="white-space:pre"></div>`],
+["Currency",`<div class="row"><input id="x_v" type="number" value="100" style="width:90px"><select id="x_f"></select><span>→</span><select id="x_t"></select></div><div class="out m" id="x_o"></div><p class="lead" style="font-size:12px">Demo rates; live: ECB / openexchangerates</p>`]];
+$("#toolbox").innerHTML=tl.map(([n,h])=>`<article class="card"><h3>${n}</h3>${h}</article>`).join("");
+$("#homeTools").innerHTML=tl.slice(0,4).map(([n])=>`<a class="card" style="text-decoration:none;color:inherit" href="#/tools"><h3>${n}</h3></a>`).join("");
+const B=(s)=>btoa(String.fromCharCode(...new TextEncoder().encode(s))),D=s=>new TextDecoder().decode(Uint8Array.from(atob(s),c=>c.charCodeAt(0)));
+document.addEventListener("click",e=>{const a=e.target.dataset.a;if(!a)return;const v=$("#b_i").value;let o;try{o={b64e:()=>B(v),b64d:()=>D(v),ue:()=>encodeURIComponent(v),ud:()=>decodeURIComponent(v),jwt:()=>v.split(".").slice(0,2).map(p=>D(p.replace(/-/g,"+").replace(/_/g,"/"))).join("\n")}[a]()}catch(x){o="⚠ "+x.message}$("#b_o").textContent=o});
+const nm={d:10,b:2,o:8,h:16};Object.keys(nm).forEach(k=>$("#n_"+k).addEventListener("input",e=>{const v=parseInt(e.target.value,nm[k]);Object.keys(nm).forEach(j=>{if(j!=k)$("#n_"+j).value=isNaN(v)?"":v.toString(nm[j])})}));
+function col(){const h=$("#c_p").value,r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16);const x=[r,g,b].map(v=>v/255),M=Math.max(...x),m=Math.min(...x),l=(M+m)/2,d=M-m;let H=0,S=0;if(d){S=d/(1-Math.abs(2*l-1));H=M==x[0]?((x[1]-x[2])/d)%6:M==x[1]?(x[2]-x[0])/d+2:(x[0]-x[1])/d+4;H=Math.round((H*60+360)%360)}
+$("#c_o").textContent=`${h}\nrgb(${r}, ${g}, ${b})\nhsl(${H}, ${Math.round(S*100)}%, ${Math.round(l*100)}%)`;$("#c_o").style.whiteSpace="pre";$("#c_s").style.background=h}
+$("#c_p").addEventListener("input",col);col();
+$("#h_i").addEventListener("input",async e=>{const b=new TextEncoder().encode(e.target.value),f=async a=>[...new Uint8Array(await crypto.subtle.digest(a,b))].map(x=>x.toString(16).padStart(2,"0")).join("");$("#h_o").style.whiteSpace="pre-wrap";$("#h_o").textContent="SHA-1\n"+await f("SHA-1")+"\nSHA-256\n"+await f("SHA-256")});
+const U={m:1,km:1000,cm:.01,mi:1609.344,ft:.3048,kg:1,g:.001,lb:.45359237};
+["u_f","u_t"].forEach((id,i)=>{$("#"+id).innerHTML=Object.keys(U).concat(["°C","°F","K"]).map(x=>`<option>${x}</option>`).join("");$("#"+id).selectedIndex=i?1:0});
+function unit(){const v=+$("#u_v").value,f=$("#u_f").value,t=$("#u_t").value,T=["°C","°F","K"];let r;if(T.includes(f)&&T.includes(t)){const c=f=="°C"?v:f=="°F"?(v-32)*5/9:v-273.15;r=t=="°C"?c:t=="°F"?c*9/5+32:c+273.15}else if(T.includes(f)||T.includes(t)||("mkgcmftmi".includes(f)&&0))r=NaN;else if(["kg","g","lb"].includes(f)!=["kg","g","lb"].includes(t))r=NaN;else r=v*U[f]/U[t];$("#u_o").textContent=isNaN(r)?"⚠":+r.toPrecision(8)+" "+t}
+["u_v","u_f","u_t"].forEach(i=>$("#"+i).addEventListener("input",unit));unit();
+function y(o,i=0){const p="  ".repeat(i);if(Array.isArray(o))return o.map(v=>p+"- "+(typeof v=="object"?"\n"+y(v,i+1):v)).join("\n");if(o&&typeof o=="object")return Object.entries(o).map(([k,v])=>typeof v=="object"&&v?p+k+":\n"+y(v,i+1):p+k+": "+v).join("\n");return p+o}
+$("#j_i").addEventListener("input",()=>{try{$("#j_o").textContent=y(JSON.parse($("#j_i").value))}catch(e){$("#j_o").textContent="⚠ "+e.message}});$("#j_i").dispatchEvent(new Event("input"));
+$("#z_i").addEventListener("input",e=>{const d=new Date(e.target.value);if(isNaN(d))return;$("#z_o").textContent=["UTC","Europe/Berlin","Europe/Moscow","America/New_York","Asia/Tokyo"].map(z=>z+": "+d.toLocaleString(L,{timeZone:z})).join("\n")});
+const FX={USD:1,EUR:.92,GBP:.79,RUB:92,JPY:150,CNY:7.2};["x_f","x_t"].forEach((id,i)=>{$("#"+id).innerHTML=Object.keys(FX).map(x=>`<option>${x}</option>`).join("");$("#"+id).selectedIndex=i});
+function fx(){$("#x_o").textContent=(+$("#x_v").value/FX[$("#x_f").value]*FX[$("#x_t").value]).toFixed(2)+" "+$("#x_t").value}["x_v","x_f","x_t"].forEach(i=>$("#"+i).addEventListener("input",fx));fx();
+/* i18n, theme, routing, search */
+function i18n(){document.documentElement.lang=L;$$("[data-i]").forEach(e=>e.textContent=t(e.dataset.i));$$("[data-ph]").forEach(e=>e.placeholder=t(e.dataset.ph));$("#lang").textContent=L=="ru"?"EN":"RU";cats();renderRepos()}
+$("#lang").onclick=()=>{L=L=="ru"?"en":"ru";try{localStorage.setItem("l",L)}catch{}i18n()};
+$("#theme").onclick=()=>{const r=document.documentElement,d=getComputedStyle(r).getPropertyValue("--bg").trim()=="#0a0e14";r.dataset.theme=d?"light":"dark";try{localStorage.setItem("th",r.dataset.theme)}catch{}};
+try{const th=localStorage.getItem("th");document.documentElement.dataset.theme=th||"dark"}catch{document.documentElement.dataset.theme="dark"}
+function route(){const p=(location.hash.replace("#/","")||"home").split("/")[0];$$(".sec").forEach(s=>s.classList.toggle("on",s.id=="s-"+p));$$("#nav a").forEach(a=>a.classList.toggle("on",a.getAttribute("href")=="#/"+(p=="home"?"":p)));scrollTo(0,0)}
+addEventListener("hashchange",route);
+$("#hgo").onclick=()=>{$("#q").value=$("#hq").value;location.hash="#/github";renderRepos()};$("#hq").addEventListener("keydown",e=>e.key=="Enter"&&$("#hgo").click());
+const dlg=$("#dlg");function gs(){const q=$("#gq").value.toLowerCase();const items=[...repos.filter(r=>r.n.toLowerCase().includes(q)).slice(0,5).map(r=>[r.n,"https://github.com/"+r.n]),...LG.filter(l=>l[0].toLowerCase().includes(q)).map(l=>[l[0],"https://"+l[1]]),...tl.filter(x=>x[0].toLowerCase().includes(q)).map(x=>[x[0],"#/tools"])];$("#gres").innerHTML=items.slice(0,8).map(([n,u])=>`<a href="${u}" ${u[0]=="h"?'target="_blank" rel="noopener"':''}>${esc(n)}</a>`).join("")||`<p class="lead">${t("none")}</p>`}
+$("#gq").addEventListener("input",gs);$("#gres").addEventListener("click",()=>dlg.close());
+const open=()=>{dlg.showModal();$("#gq").focus();gs()};$("#sbtn").onclick=open;
+addEventListener("keydown",e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()=="k"){e.preventDefault();dlg.open?dlg.close():open()}});
+/* skeletons then data */
+$("#repos").innerHTML=$("#homeTop").innerHTML=Array(6).fill('<div class="sk"></div>').join("");
+langs();i18n();route();
+setTimeout(()=>{$("#homeTop").innerHTML=repos.slice(0,6).map(card).join("");renderRepos()},500);
+</script></body></html>
